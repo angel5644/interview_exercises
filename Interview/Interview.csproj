@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="RabbitMQ.Client" Version="6.8.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DesignPatterns\Interview.DesignPatterns.csproj" />
+    <ProjectReference Include="..\Interview.Core\Interview.Core.csproj" />
+    <ProjectReference Include="..\Interview.Delegates\Interview.Delegates.csproj" />
+    <ProjectReference Include="..\Interview.Events\Interview.Events.csproj" />
+    <ProjectReference Include="..\Interview.Problems\Interview.Problems.csproj" />
+    <ProjectReference Include="..\Interview.Reflection\Interview.Reflection.csproj" />
+  </ItemGroup>
+
+</Project>
