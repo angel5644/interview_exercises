@@ -2,13 +2,14 @@
 {
     public delegate void OnSpacebarPressedCallback();
 
-    public class Game
+    public class Game : IDisposable
     {
         public event OnSpacebarPressedCallback? OnSpaceBarPressedCallback;
 
         private Player? player;
         private readonly int coinsPerJump = 10;
         public bool IsGameOver = false;
+        private bool disposedValue;
 
         public void Start()
         {
@@ -37,7 +38,7 @@
                 // Player actions trigger the subscribed methods
                 player?.Jump();
 
-                ShowPlayeStats();
+                ShowPlayerStats();
             };
         }
 
@@ -56,7 +57,7 @@
             }
         }
 
-        private void ShowPlayeStats()
+        private void ShowPlayerStats()
         {
             var stats = System.Text.Json.JsonSerializer.Serialize(player);
 
@@ -72,6 +73,39 @@
         {
             IsGameOver = true;
             Console.WriteLine("Game over!");
+        }
+
+        private void UnSubscribeEvents() 
+        {
+            var subscribers = OnSpaceBarPressedCallback?.GetInvocationList() ?? new Delegate[] { };
+
+            foreach (var subscriber in subscribers)
+            {
+                OnSpaceBarPressedCallback -= (subscriber as OnSpacebarPressedCallback);
+            }
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposedValue)
+            {
+                if (disposing)
+                {
+                    // Dispose managed state (managed objects)
+                    UnSubscribeEvents();
+                }
+
+                // TODO: free unmanaged resources (unmanaged objects) and override finalizer
+                // TODO: set large fields to null
+                disposedValue = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
+            Dispose(disposing: true);
+            GC.SuppressFinalize(this);
         }
     }
 }
