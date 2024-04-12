@@ -1,4 +1,5 @@
 ﻿using Interview.Delegates;
+using Interview.DesignPatterns.Facade.Interfaces;
 
 namespace Interview.DesignPatterns.Facade
 {
@@ -37,46 +38,6 @@ namespace Interview.DesignPatterns.Facade
 
             // Send email
             emailService.SendEmail(user);
-
-            return true;
-        }
-    }
-
-    // Kept the rest of the interfaces and classes in here for simplicity
-    public interface IEmailService
-    {
-        void SendEmail(Person user);
-    }
-    public interface IUserRepo
-    {
-        void AddUser(Person user);
-    }
-    public interface IUserValidator
-    {
-        bool Validate(Person user);
-    }
-
-    public class TestEmailService : IEmailService
-    {
-        public void SendEmail(Person user)
-        {
-            Console.WriteLine("Sending email to user: {0}", user.Name);
-        }
-    }
-
-    public class TestUserRepo : IUserRepo
-    {
-        public void AddUser(Person user)
-        {
-            Console.WriteLine("Inserting to the database, user: {0}", user.Name);
-        }
-    }
-
-    public class TestUserValidator : IUserValidator
-    {
-        public bool Validate(Person user)
-        {
-            Console.WriteLine("Validating user: {0}", user.Name);
 
             return true;
         }
