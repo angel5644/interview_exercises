@@ -4,9 +4,10 @@ using Interview.DesignPatterns.Singleton;
 using Interview.MiniApp;
 using Microsoft.Extensions.DependencyInjection;
 
-//IServiceCollection services = new ServiceCollection();
+IServiceCollection services = new ServiceCollection();
 
-//services.AddSingleton<CacheManager>();
+services.AddSingleton<RedisCacheManager>();
+services.AddSingleton<MemoryCacheManager>();
 
 
 IMiniApp miniApp = MiniAppFactory.CreateMiniApp(nameof(SingletonMiniApp));

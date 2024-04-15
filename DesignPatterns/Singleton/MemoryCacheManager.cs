@@ -38,14 +38,14 @@ namespace Interview.DesignPatterns.Singleton
             memoryCache.Set(key, value, expirationTime);
         }
 
-        public TCacheElement GetFromCache<TCacheElement>(string key) where TCacheElement : class
+        public string GetStringFromCache(string key) 
         {
-            if (memoryCache.TryGetValue(key, out TCacheElement? cachedValue)) 
+            if (memoryCache.TryGetValue(key, out var cachedValue)) 
             {
-                return cachedValue;
+                return cachedValue?.ToString();
             }
 
-            return default;
+            return null as string;
         }
     }
 }

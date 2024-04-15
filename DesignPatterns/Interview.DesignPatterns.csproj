@@ -7,12 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Interview.Core\Interview.Core.csproj" />
-    <ProjectReference Include="..\Interview.Delegates\Interview.Delegates.csproj" />
+    <Compile Remove="Factory\**" />
+    <EmbeddedResource Remove="Factory\**" />
+    <None Remove="Factory\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Factory\" />
+    <ProjectReference Include="..\Interview.Core\Interview.Core.csproj" />
+    <ProjectReference Include="..\Interview.Delegates\Interview.Delegates.csproj" />
   </ItemGroup>
 
   <ItemGroup>
