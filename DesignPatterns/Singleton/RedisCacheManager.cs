@@ -59,7 +59,7 @@ namespace Interview.DesignPatterns.Singleton
                 return cachedValue.ToString();
             }
 
-            return (string)null;
+            return null;
         }
 
         public void Dispose()

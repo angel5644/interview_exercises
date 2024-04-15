@@ -37,6 +37,11 @@ namespace Interview.RabbitMQ
             channel = connection.CreateModel();
         }
 
+        public void Dispose()
+        {
+            channel.Dispose();
+        }
+
         public void Publish<TEvent>(TEvent @event) where TEvent : IEvent
         {
             var eventName = @event.GetType().Name;
@@ -81,11 +86,6 @@ namespace Interview.RabbitMQ
             };
 
             channel.BasicConsume(eventName, false, consumer);
-        }
-
-        public void Dispose()
-        {
-            this.Dispose();
         }
     }
 }
