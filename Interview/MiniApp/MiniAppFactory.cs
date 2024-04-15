@@ -1,4 +1,5 @@
 ﻿using Interview.Core;
+using Interview.DesignPatterns.Singleton;
 
 namespace Interview.MiniApp
 {
@@ -18,6 +19,7 @@ namespace Interview.MiniApp
                 nameof(FacadeMiniapp) => new FacadeMiniapp(),
                 nameof(EventPlayerMiniApp) => new EventPlayerMiniApp(),
                 nameof(ReflectionMiniApp) => new ReflectionMiniApp(),
+                nameof(SingletonMiniApp) => new SingletonMiniApp(),
                 _ => throw new ArgumentException("Invalid mini app name"),
             };
         }

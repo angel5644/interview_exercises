@@ -1,6 +1,8 @@
 ﻿using Interview.Core;
 using Interview.Delegates;
 using Interview.DesignPatterns.Facade;
+using Interview.DesignPatterns.Facade.Interfaces;
+using Interview.DesignPatterns.Facade.Manage;
 
 namespace Interview.MiniApp
 {
