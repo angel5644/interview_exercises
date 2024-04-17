@@ -14,6 +14,18 @@ namespace Interview.WebApi.Api
                 return Results.Ok(data);
             });
 
+            app.MapGet("/players/{id}", async (int id, IPlayerRepo playerRepo) =>
+            {
+                var data = await playerRepo.GetPlayerByIdAsync(id);
+
+                if (data is null) 
+                {
+                    return Results.NotFound(id);
+                }
+
+                return Results.Ok(data);
+            });
+
             app.MapPost("/players", async (IPlayerRepo playerRepo, Player player) =>
             {
                 await playerRepo.AddPlayer(player);

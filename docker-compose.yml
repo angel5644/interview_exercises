@@ -1,0 +1,32 @@
+version: '3.4'
+
+services:
+  interview.webapi:
+    image: ${DOCKER_REGISTRY-}interviewwebapi
+    container_name: interview.webapi
+    build:
+      context: .
+      dockerfile: Interview.WebApi/Dockerfile
+    ports:
+      - "5000:5000"
+      - "5001:5001" 
+    depends_on:
+      - interview.mongo
+      - interview.redis
+ 
+  interview.mongo:
+    image: mongodb/mongodb-community-server:latest
+    restart: always
+    container_name: interview.mongo
+    ports: 
+      - "27017:27017"
+    volumes:
+      - ./.containers/interview-db:/var/lib/mongodb/data      
+
+  interview.redis: 
+    container_name: interview.redis
+    image: redis/redis-stack:latest
+    restart: always
+    ports: 
+      - "6379:6379"
+      - "8001:8001"

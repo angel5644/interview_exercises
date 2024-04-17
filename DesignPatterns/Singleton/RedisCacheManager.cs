@@ -1,13 +1,44 @@
-﻿using Microsoft.Extensions.Caching.Memory;
-using StackExchange.Redis;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using StackExchange.Redis;
 
 namespace Interview.DesignPatterns.Singleton
 {
+    public class RedisCache : IDisposable
+    {
+        private readonly IConnectionMultiplexer redisConnection;
+        private readonly IDatabase redisDatabase;
+
+        public RedisCache(IConnectionMultiplexer redisConnection) 
+        {
+            this.redisConnection = redisConnection;
+            this.redisDatabase = redisConnection.GetDatabase();
+        }
+
+        public void AddToCache(string key, string value, TimeSpan expirationTime)
+        {
+            var redisKey = new RedisKey(key);
+            var redisValue = new RedisValue(value);
+
+            redisDatabase.StringSet(redisKey, redisValue, expirationTime);
+        }
+
+        public string GetStringFromCache(string key)
+        {
+            var cachedValue = redisDatabase.StringGet(key);
+            if (cachedValue.HasValue)
+            {
+                return cachedValue.ToString();
+            }
+
+            return null;
+        }
+
+        public void Dispose()
+        {
+            redisConnection?.Close();
+            redisConnection?.Dispose();
+        }
+    }
+
     public class RedisCacheManager : IDisposable
     {
         // 1. Add a private static field to the class for storing the singleton instance.
@@ -20,6 +51,8 @@ namespace Interview.DesignPatterns.Singleton
             // It initializes an instance of MemoryCache during construction
             var options = new ConfigurationOptions()
             {
+                AbortOnConnectFail = false,
+                ConnectTimeout = 60,
                 DefaultDatabase = 0,
                 User = "default",
                 Password = "redis123",

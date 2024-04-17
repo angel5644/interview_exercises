@@ -6,5 +6,6 @@ namespace Interview.WebApi.Domain
     {
         Task<IList<Player>> GetPlayersAsync();
         Task AddPlayer(Player player);
+        Task<Player> GetPlayerByIdAsync(int id);
     }
 }
