@@ -1,0 +1,35 @@
+@keyframes jumpAnimation {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-50px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes runAnimation {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+  
+  .player {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px; /* Adjust width as needed */
+    height: 50px; /* Adjust height as needed */
+    background-color: red; /* Replace with your player image */
+    animation: runAnimation 5s linear infinite; /* Adjust animation duration and timing */
+  }
+
+  .jump {
+    animation: jumpAnimation 0.5s ease;
+  }

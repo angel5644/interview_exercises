@@ -1,6 +1,16 @@
 version: '3.4'
 
 services:
+  interview.ux:
+    container_name: interview.ux
+    build:
+      context: ./UI/interviewapp
+      dockerfile: DockerFile
+    ports:
+      - "4200:4200"
+    volumes:
+      - ./:/interview.ux
+
   interview.webapi:
     image: ${DOCKER_REGISTRY-}interviewwebapi
     container_name: interview.webapi
