@@ -23,7 +23,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Interview.WebApi", "Intervi
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{4DA52001-B325-4980-ADF9-480B8E45B174}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interview.DesktopApp", "..\Interview.DesktopApp\Interview.DesktopApp.csproj", "{D34671E0-5522-46E4-B8DA-29F359D835A4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interview.DesktopApp", "Interview.DesktopApp\Interview.DesktopApp.csproj", "{D34671E0-5522-46E4-B8DA-29F359D835A4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

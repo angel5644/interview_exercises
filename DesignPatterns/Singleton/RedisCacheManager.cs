@@ -54,8 +54,6 @@ namespace Interview.DesignPatterns.Singleton
                 AbortOnConnectFail = false,
                 ConnectTimeout = 60,
                 DefaultDatabase = 0,
-                User = "default",
-                Password = "redis123",
                 EndPoints =
                 {
                     { "localhost", 6379 }
